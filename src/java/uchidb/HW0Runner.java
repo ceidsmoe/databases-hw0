@@ -1,5 +1,8 @@
 package uchidb;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -10,6 +13,7 @@ import java.util.Set;
 public class HW0Runner implements Containers<Integer, String> {
 
 	private static HW0Runner instance = null;
+	private Map<String, Integer> m = new HashMap<String, Integer>();
 	
 	private HW0Runner() { }
 	
@@ -24,44 +28,54 @@ public class HW0Runner implements Containers<Integer, String> {
 
 	@Override
 	public Set<Integer> initSet(Integer[] tArray) {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Integer> output = new HashSet<Integer>();
+		for (int i = 0; i < tArray.length; i++)
+			output.add(tArray[i]);
+		return output;
 	}
 
 	@Override
 	public List<Integer> initList(Integer[] tArray) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Integer> output = new ArrayList<Integer>();
+		for (int i = 0; i < tArray.length; i++)
+			output.add(tArray[i]);
+		return output;
 	}
 
 	@Override
 	public Map<String, Integer> initEmptyMap() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, Integer> output = new HashMap<String, Integer>();
+		return output;
 	}
 
 	@Override
 	public void storeMap(Map<String, Integer> mapToStoreInClass) {
-		// TODO Auto-generated method stub
+		this.m = mapToStoreInClass;
 		
 	}
 
 	@Override
 	public boolean addToMap(String key, Integer value, boolean overwriteExistingKey) {
-		// TODO Auto-generated method stub
-		return false;
+		if (!this.m.containsKey(key) || overwriteExistingKey) {
+			this.m.put(key, value);
+			return true;
+		}
+		else
+			return false;
 	}
 
 	@Override
 	public Integer getValueFromMap(String key) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.m.get(key);
 	}
 
 	@Override
 	public Integer getValueFromMap(String key, Integer defaultValue) {
-		// TODO Auto-generated method stub
-		return null;
+		Integer output = this.m.get(key);
+		if (output == null)
+			return defaultValue;
+		else
+			return output;
 	}
 	
 	public static void main(String[] args){

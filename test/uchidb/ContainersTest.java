@@ -101,6 +101,5 @@ public class ContainersTest {
 		assertTrue(cont == cont2);
 		assertTrue("Map correct", intClassArray[0] == cont2.getValueFromMap(strArray[0]));
 		
-		
 	}
 }
